@@ -1,45 +1,58 @@
 package pl.wlazly.library.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-@Table(name="users")
+@Table(name = "user")
 @Data
-@Builder
-@AllArgsConstructor
 public class User implements Serializable {
 
-    private static final long serialVersionUID = -6199041478952441429L;
 
+    private static final long serialVersionUID = 5848890827451149050L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer id;
 
-    @Column
+    @Column(name = "login")
+    @NotNull
     private String login;
-
-    @Column
+    @Column(name = "email")
+    @NotNull
+    private String email;
+    @Column(name = "password")
+    @NotNull
     private String password;
 
-    @Column
+    @Column(name = "first_name")
+    @NotNull
     private String firstName;
-
-    @Column
+    @Column(name = "last_name")
+    @NotNull
     private String lastName;
 
-    @Column
-    private String email;
+    @Column(name = "active")
+    @NotNull
+    private int active;
 
-    @Enumerated(EnumType.STRING)
-    private UserStatus admin;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+    @Transient
+    private int roleNumber;
+
+    @Transient
+    private String newPassword;
 
     public User() {
-        //for hibernate
     }
 
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }
