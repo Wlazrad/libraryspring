@@ -7,6 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.wlazly.library.entity.User;
+import pl.wlazly.library.service.UserService;
+import pl.wlazly.library.utils.UserUtils;
+import pl.wlazly.library.validators.ChangePasswordValidator;
+import pl.wlazly.library.validators.RegisterValidator;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

@@ -1,6 +1,6 @@
 <footer class="container-fluid w-100 py-2 bg-dark">
 <div class="container">
-    <p class="m-0 text-center text-white">Copyright &copy; 2019 by <a href="https://github.com/arexe" class="alert-link" target="_blank">AreXe</a></p>
+    <p class="m-0 text-center text-white">Copyright &copy; 2019 by <a href="https://github.com/wlazrad" class="alert-link" target="_blank">Wlazrad</a></p>
 </div>
 </footer>
 
