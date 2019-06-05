@@ -16,7 +16,7 @@
 <!-- Page Content -->
 <main class="container-fluid py-3 flex-fill">
 <div class="container">
-    <h1>Library Main Page</h1>
+    <h1>Portal Main Page</h1>
 </div>
 </main>
 <!-- Footer -->

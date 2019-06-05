@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Portal">
 <meta name="keywords" content="portal, warehouse">
-<meta name="author" content="AreXe">
+<meta name="author" content="Wlazrad">
 <meta http-equiv="X-Ua-Compatible" content="IE=edge">
 
 <!-- Styles - Bootstrap core, custom styling, fonts -->
