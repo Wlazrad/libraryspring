@@ -27,6 +27,8 @@
         </div>
     </div>
 
+    <h1>${book.id}</h1>
+
     <div class="card border-primary my-3">
         <h4 class="card-header">Book list</h4>
         <div class="card-body" align="center">
