@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.wlazly.library.entity.Book;
 import pl.wlazly.library.entity.BookStatus;
+import pl.wlazly.library.entity.User;
 import pl.wlazly.library.service.BooksService;
+import pl.wlazly.library.service.UserService;
+import pl.wlazly.library.utils.UserUtils;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -25,6 +28,9 @@ public class BookController {
 
     @Autowired
     BooksService booksService;
+
+    @Autowired
+    UserService userService;
 
     @GET
     @RequestMapping(value = "/books")
@@ -100,6 +106,11 @@ public class BookController {
     public String deleteBookFromPanel(Book book, @PathVariable("id") int id) {
         booksService.deleteBookById(id);
         return "redirect:/admin/books";
+    }
+
+    private User getLoggedUser() {
+        String loggedUser = UserUtils.getLoggedUser();
+        return userService.findUserByEmail(loggedUser);
     }
 
 

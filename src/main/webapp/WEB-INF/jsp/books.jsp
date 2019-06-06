@@ -26,11 +26,16 @@
             <button class="btn btn-dark my-2 my-sm-0" type="button" id="searchButton" onclick="searchBooks();">Search</button>
         </div>
     </div>
-
-    <h1>${book.id}</h1>
-
     <div class="card border-primary my-3">
         <h4 class="card-header">Book list</h4>
+        <c:choose>
+            <c:when test="${user.ban == true }">
+                <h3> Please pay for unlock borrow books</h3>
+            </c:when>
+            <c:otherwise>
+                <h3> Choose book</h3>
+            </c:otherwise>
+        </c:choose>
         <div class="card-body" align="center">
             <table class="table table-hover table-sm table-striped">
                 <thead>
