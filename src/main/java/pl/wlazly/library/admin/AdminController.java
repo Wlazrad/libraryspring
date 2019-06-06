@@ -16,6 +16,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Controller
@@ -77,7 +78,7 @@ public class AdminController {
     @DELETE
     @RequestMapping(value = "/admin/deleteuser/{id}")
     @Secured(value = {"ROLE_ADMIN"})
-    public String deleteUserAction(User user, @PathVariable("id") int id) {
+    public String deleteUserAction(User user,@PathVariable("id") int id) {
         adminService.deleteUserById(id);
         return "redirect:/admin/users";
     }
@@ -102,8 +103,8 @@ public class AdminController {
 
     private User getUserById(int id) {
         User userById = adminService.getUserById(id);
-            int roleNumber = userById.getRoles().iterator().next().getId();
-            userById.setRoleNumber(roleNumber);
+        int roleNumber = userById.getRoles().iterator().next().getId();
+        userById.setRoleNumber(roleNumber);
         return userById;
     }
 

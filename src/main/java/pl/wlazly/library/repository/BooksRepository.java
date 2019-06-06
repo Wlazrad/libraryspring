@@ -19,5 +19,10 @@ public interface BooksRepository extends JpaRepository<Book, Integer> {
     @Query(value = "SELECT * FROM books b WHERE b.title LIKE %:title%", nativeQuery = true)
     List<Book> findBooksByTitle(@Param("title") String title);
 
+    @Modifying
+    @Query(value = "UPDATE books b SET b.status=:status WHERE b.book_id=:id", nativeQuery = true)
+    void updateBookStatus(@Param("id") int id, @Param("status")String status);
+
     void deleteBookById(int id);
 }
+

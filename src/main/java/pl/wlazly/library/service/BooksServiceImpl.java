@@ -13,7 +13,7 @@ import java.util.List;
 public class BooksServiceImpl implements BooksService {
 
     @Autowired
-    BooksRepository booksRepository;
+    private BooksRepository booksRepository;
 
     @Override
     public List<Book> getBookList() {
@@ -44,6 +44,11 @@ public class BooksServiceImpl implements BooksService {
         updateBook.setReleaseDate(book.getReleaseDate());
         updateBook.setDescription(book.getDescription());
         booksRepository.save(updateBook);
+    }
+
+    @Override
+    public void updateBookStatus(int id, String bookStatus) {
+        booksRepository.updateBookStatus(id, bookStatus);
     }
 
     @Override

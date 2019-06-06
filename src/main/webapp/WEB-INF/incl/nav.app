@@ -31,6 +31,9 @@
 
                 <sec:authorize access="isAuthenticated()">
                 <li class="nav-item">
+                    <a class="nav-link" id="nav-library" href="/books">Library</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" id="nav-profile" href="/profile">Profile</a>
                 </li>
                 <li class="nav-item">

@@ -1,6 +1,5 @@
 package pl.wlazly.library.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -83,7 +82,7 @@ public class UserProfileController {
         User actualUser = userService.findUserByEmail(loggedUser);
 
         User existingLogin = userService.findUserByLogin(user.getLogin());
-        if (!actualUser.getLogin().equals(user.getLogin())) {
+        if(!actualUser.getLogin().equals(user.getLogin())) {
             new RegisterValidator().validateLoginExist(existingLogin, result);
         }
 

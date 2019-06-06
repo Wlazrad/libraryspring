@@ -24,6 +24,7 @@ function highlightNew() {
     newActiveItemId = pathMatches(/index|^\s*$/) ? "nav-home" :
     pathMatches(/login/) ? "nav-login" :
     pathMatches(/register/) ? "nav-register" :
+    pathMatches(/books|borrows/) ? "nav-library" :
     pathMatches(/profile|editprofile|editinfo|changepassword/) ? "nav-profile" :
     pathMatches(/admin/) ? "nav-admin" : "";
 

@@ -21,20 +21,16 @@
 
     <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-primary rounded shadow-sm">
         <h5 class="mb-0 text-white col-2">Book panel</h5>
-        <div class="input-group">
-            <input class="form-control" type="text" id="searchValue" placeholder="Search..." aria-label="Search">
-            <button class="btn btn-dark my-2 my-sm-0" type="button" id="searchButton" onclick="searchBooks();">Search</button>
-        </div>
     </div>
 
     <div class="card border-primary my-3">
-        <h4 class="card-header">Book list</h4>
+        <h4 class="card-header">Your borrow list</h4>
         <div class="card-body" align="center">
 
             <table class="table table-hover table-sm table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">Borrow start date</th>
                     <th scope="col">ISBN</th>
                     <th scope="col">Title</th>
                     <th scope="col">Author</th>
@@ -44,17 +40,17 @@
                 </thead>
 
                 <tbody>
-                <c:forEach var="book" items="${bookList}">
+                <c:forEach var="borrow" items="${borrowList}">
                     <tr>
-                        <td>${book.id}</td>
-                        <td>${book.isbn}</td>
-                        <td>${book.title}</td>
-                        <td>${book.author}</td>
-                        <td>${book.releaseDate}</td>
+                        <td>${borrow.startDate}</td>
+                        <td>${borrow.book.isbn}</td>
+                        <td>${borrow.book.title}</td>
+                        <td>${borrow.book.author}</td>
+                        <td>${borrow.book.releaseDate}</td>
                         <td>
-                            <sf:form id="borrowForm" action="addnewborrow" modelAttribute="book" enctype="multipart/form-data" method="POST">
-                                <input type="hidden" name="id" value="${book.id}"/>
-                                <button class="btn btn-success" type="submit">Borrow</button>
+                            <sf:form id="borrowForm" action="returnbook" modelAttribute="borrow" enctype="multipart/form-data" method="PUT">
+                                <input type="hidden" name="id" value="${borrow.id}"/>
+                                <button class="btn btn-warning" type="submit">Return</button>
                             </sf:form>
                         </td>
                     </tr>

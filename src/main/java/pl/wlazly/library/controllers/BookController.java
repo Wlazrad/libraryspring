@@ -1,5 +1,6 @@
 package pl.wlazly.library.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class BookController {
@@ -23,9 +25,25 @@ public class BookController {
     BooksService booksService;
 
     @GET
+    @RequestMapping(value = "/books")
+    public String showAvailableBooks(Model model) {
+        List<Book> bookList = booksService.getBookList().stream().filter(b -> b.getStatus().equals(BookStatus.AVAILABLE)).collect(Collectors.toList());
+        model.addAttribute("bookList", bookList);
+        return "books";
+    }
+
+    @GET
+    @RequestMapping(value = "/books/search/{title}")
+    public String searchAvailableBooks(Model model, @PathVariable("title") String title) {
+        List<Book> bookList = booksService.findBooksByTitle(title).stream().filter( b -> b.getStatus().equals(BookStatus.AVAILABLE)).collect(Collectors.toList());
+        model.addAttribute("bookList", bookList);
+        return "books";
+    }
+
+    @GET
     @RequestMapping(value = "/admin/books")
     @Secured(value = {"ROLE_ADMIN"})
-    public String showAllBooks(Model model) {
+    public String showAllBooksAdmin(Model model) {
         List<Book> bookList = booksService.getBookList();
         model.addAttribute("bookList", bookList);
         return "admin/books";
@@ -34,7 +52,7 @@ public class BookController {
     @GET
     @RequestMapping(value = "/admin/books/search/{title}")
     @Secured(value = {"ROLE_ADMIN"})
-    public String searchBooks(Model model, @PathVariable("title") String title) {
+    public String searchBooksAdmin(Model model, @PathVariable("title") String title) {
         List<Book> bookList = booksService.findBooksByTitle(title);
         model.addAttribute("bookList", bookList);
         return "admin/books";

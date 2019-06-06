@@ -21,7 +21,7 @@ public class RegisterController {
 
     @GET
     @RequestMapping(value = "/register")
-    public String registerForm(Model model){
+    public String registerForm(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "register";
@@ -29,7 +29,7 @@ public class RegisterController {
 
     @POST
     @RequestMapping(value = "/adduser")
-    public String registerPost(Model model, User user, BindingResult result){
+    public String registerPost(Model model, User user, BindingResult result) {
 
         String returnPage = null;
 

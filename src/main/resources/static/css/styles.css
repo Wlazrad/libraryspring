@@ -85,3 +85,13 @@ main {
     font-size: .75rem;
     text-transform: uppercase;
 }
+
+/*Jumbotron*/
+.jumbotron {
+    background-image: url(../img/book-cover.jpg);
+    background-size: cover;
+}
+
+.jumbotron p {
+    font-size: 18px;
+}
