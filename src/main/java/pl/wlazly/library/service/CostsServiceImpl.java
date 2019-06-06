@@ -48,4 +48,14 @@ public class CostsServiceImpl implements CostsService {
         userService.updateUserCosts(totalSum, user.getEmail());
     }
 
+    @Override
+    public void blockBorrowBooks(User user) {
+        if(user.getCosts().doubleValue()>0) {
+            user.setBan(true);
+            userService.updateUserBan(true, user.getEmail());
+        }else{
+            user.setBan(false);
+        }
+    }
+
 }

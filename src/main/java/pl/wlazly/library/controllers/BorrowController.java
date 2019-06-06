@@ -37,15 +37,18 @@ public class BorrowController {
     @POST
     @RequestMapping(value = "addnewborrow")
     public String addBorrow(Model model, Book book) {
-        Borrow borrow = new Borrow();
+        costsService.saveCosts(getLoggedUser());
+        costsService.blockBorrowBooks(getLoggedUser());
+        if(!getLoggedUser().isBan()==true) {
+            Borrow borrow = new Borrow();
+            borrow.setUser(getLoggedUser());
+            borrow.setBook(book);
+            borrow.setStartDate(LocalDate.now());
 
-        borrow.setUser(getLoggedUser());
-        borrow.setBook(book);
-        borrow.setStartDate(LocalDate.now());
+            booksService.updateBookStatus(book.getId(), BookStatus.UNAVAILABLE.toString());
 
-        booksService.updateBookStatus(book.getId(), BookStatus.UNAVAILABLE.toString());
-
-        borrowService.saveBorrow(borrow);
+            borrowService.saveBorrow(borrow);
+        }
         return "redirect:books";
     }
 
@@ -77,6 +80,7 @@ public class BorrowController {
     public String getCosts(Model model) {
         BigDecimal costs = getLoggedUser().getCosts();
         costsService.saveCosts(getLoggedUser());
+        costsService.blockBorrowBooks(getLoggedUser());
         model.addAttribute("costs", costs);
         return "costs";
     }

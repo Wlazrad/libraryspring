@@ -15,7 +15,7 @@
     <%@include file="/WEB-INF/incl/nav.app" %>
 <!-- Page Content -->
     <div class="jumbotron">
-        <div class="container text-black">
+        <div class="container text-white">
             <h1 class="display-3">Hello to our library!</h1>
             <sec:authorize access="hasRole('ANONYMOUS')">
             <p>Please log in first in order to use our library service and option to borrow books.</p>

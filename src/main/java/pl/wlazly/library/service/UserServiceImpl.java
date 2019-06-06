@@ -61,4 +61,10 @@ public class UserServiceImpl implements UserService {
     public void updateUserCosts(BigDecimal costs, String email) {
         userRepository.updateUserCosts(costs, email);
     }
+
+    @Override
+    public void updateUserBan(boolean ban, String email) {
+        userRepository.updateUserBan(ban, email);
+
+    }
 }

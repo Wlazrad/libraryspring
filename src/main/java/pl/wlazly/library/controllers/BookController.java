@@ -18,6 +18,8 @@ import javax.ws.rs.PUT;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static pl.wlazly.library.utils.UserUtils.getLoggedUser;
+
 @Controller
 public class BookController {
 
@@ -29,13 +31,14 @@ public class BookController {
     public String showAvailableBooks(Model model) {
         List<Book> bookList = booksService.getBookList().stream().filter(b -> b.getStatus().equals(BookStatus.AVAILABLE)).collect(Collectors.toList());
         model.addAttribute("bookList", bookList);
+        model.addAttribute("user", getLoggedUser());
         return "books";
     }
 
     @GET
     @RequestMapping(value = "/books/search/{title}")
     public String searchAvailableBooks(Model model, @PathVariable("title") String title) {
-        List<Book> bookList = booksService.findBooksByTitle(title).stream().filter( b -> b.getStatus().equals(BookStatus.AVAILABLE)).collect(Collectors.toList());
+        List<Book> bookList = booksService.findBooksByTitle(title).stream().filter(b -> b.getStatus().equals(BookStatus.AVAILABLE)).collect(Collectors.toList());
         model.addAttribute("bookList", bookList);
         return "books";
     }
@@ -61,7 +64,7 @@ public class BookController {
     @GET
     @RequestMapping(value = "/admin/addbook")
     @Secured(value = {"ROLE_ADMIN"})
-    public String showBookForm(Model model){
+    public String showBookForm(Model model) {
         return "admin/addbook";
     }
 
@@ -94,7 +97,7 @@ public class BookController {
     @DELETE
     @RequestMapping(value = "/admin/deletebook/{id}")
     @Secured(value = {"ROLE_ADMIN"})
-    public String deleteBookFromPanel(Book book,@PathVariable("id") int id) {
+    public String deleteBookFromPanel(Book book, @PathVariable("id") int id) {
         booksService.deleteBookById(id);
         return "redirect:/admin/books";
     }

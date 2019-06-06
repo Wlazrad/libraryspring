@@ -30,7 +30,6 @@
     <div class="card border-primary my-3">
         <h4 class="card-header">Book list</h4>
         <div class="card-body" align="center">
-
             <table class="table table-hover table-sm table-striped">
                 <thead>
                 <tr>

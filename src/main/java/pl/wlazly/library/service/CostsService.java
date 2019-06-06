@@ -7,4 +7,5 @@ import java.math.BigDecimal;
 public interface CostsService {
 
     void saveCosts(User user);
+    void blockBorrowBooks(User user);
 }

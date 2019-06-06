@@ -1,5 +1,6 @@
 package pl.wlazly.library.service;
 
+import org.springframework.data.repository.query.Param;
 import pl.wlazly.library.entity.User;
 
 import java.math.BigDecimal;
@@ -12,4 +13,5 @@ public interface UserService {
     void updateUserPassword(String newPassword, String email);
     void updateUserProfile(String login, String firstName, String lastName, String email);
     void updateUserCosts(BigDecimal costs, String email);
+    void updateUserBan(boolean ban, String email);
 }

@@ -26,7 +26,6 @@
     <div class="card border-primary my-3">
         <h4 class="card-header">Your borrow list</h4>
         <div class="card-body" align="center">
-
             <table class="table table-hover table-sm table-striped">
                 <thead>
                 <tr>
@@ -38,8 +37,6 @@
                     <th scope="col">Choose</th>
                 </tr>
                 </thead>
-
-                <tbody>
                 <c:forEach var="borrow" items="${borrowList}">
                     <tr>
                         <td>${borrow.startDate}</td>
