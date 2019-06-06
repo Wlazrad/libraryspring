@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pl.wlazly.library.entity.User;
 
+import java.math.BigDecimal;
+
 @Repository("userRepository")
 public interface UserRepository extends JpaRepository<User, Integer> {
 
@@ -20,4 +22,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query("UPDATE User u SET u.login=:login, u.firstName=:firstName, u.lastName=:lastName WHERE u.email=:email")
     void updateUserProfile(@Param("login") String login, @Param("firstName") String firstName, @Param("lastName") String lastName, @Param("email") String email);
+
+    @Modifying
+    @Query("UPDATE User u SET u.costs=:costs WHERE u.email=:email")
+    void updateUserCosts(@Param("costs") BigDecimal cost, @Param("email") String email);
+
 }

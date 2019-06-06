@@ -9,12 +9,14 @@ import pl.wlazly.library.repository.RoleRepository;
 import pl.wlazly.library.repository.UserRepository;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.HashSet;
 
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
+
 
     @Autowired
     private UserRepository userRepository;
@@ -53,5 +55,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserProfile(String login, String firstName, String lastName, String email) {
         userRepository.updateUserProfile(login, firstName, lastName, email);
+    }
+
+    @Override
+    public void updateUserCosts(BigDecimal costs, String email) {
+        userRepository.updateUserCosts(costs, email);
     }
 }

@@ -10,12 +10,14 @@ import pl.wlazly.library.entity.Borrow;
 import pl.wlazly.library.entity.User;
 import pl.wlazly.library.service.BooksService;
 import pl.wlazly.library.service.BorrowService;
+import pl.wlazly.library.service.CostsService;
 import pl.wlazly.library.service.UserService;
 import pl.wlazly.library.utils.UserUtils;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +31,8 @@ public class BorrowController {
     private BorrowService borrowService;
     @Autowired
     BooksService booksService;
+    @Autowired
+    private CostsService costsService;
 
     @POST
     @RequestMapping(value = "addnewborrow")
@@ -67,4 +71,15 @@ public class BorrowController {
         String loggedUser = UserUtils.getLoggedUser();
         return userService.findUserByEmail(loggedUser);
     }
+
+    @GET
+    @RequestMapping(value = "costs")
+    public String getCosts(Model model) {
+        BigDecimal costs = getLoggedUser().getCosts();
+        costsService.saveCosts(getLoggedUser());
+        model.addAttribute("costs", costs);
+        return "costs";
+    }
+
+
 }

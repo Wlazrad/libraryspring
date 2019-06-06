@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Entity
@@ -39,6 +40,14 @@ public class User implements Serializable {
     @Column(name = "active")
     @NotNull
     private int active;
+
+    @Column(name = "costs")
+    @NotNull
+    private BigDecimal costs;
+
+    @Column(name = "ban")
+    @NotNull
+    private boolean ban;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

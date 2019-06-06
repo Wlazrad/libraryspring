@@ -19,6 +19,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/borrows"><span data-feather="list"></span>Borrow list</a>
           </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/costs"><span data-feather="dollar-sign"></span>Cost list</a>
+          </li>
 		</ul>
 
 		</div>
