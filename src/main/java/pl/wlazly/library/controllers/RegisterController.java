@@ -12,6 +12,7 @@ import pl.wlazly.library.validators.RegisterValidator;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import java.math.BigDecimal;
 
 @Controller
 public class RegisterController {
@@ -39,7 +40,8 @@ public class RegisterController {
         new RegisterValidator().validateEmailExist(existingEmail, result);
         new RegisterValidator().validateLoginExist(existingLogin, result);
         new RegisterValidator().validate(user, result);
-
+        user.setBan(false);
+        user.setCosts(BigDecimal.valueOf(0.00));
         if (result.hasErrors()) {
             returnPage = "register";
         } else {

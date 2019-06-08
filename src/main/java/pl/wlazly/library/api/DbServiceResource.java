@@ -1,11 +1,9 @@
 package pl.wlazly.library.api;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.annotation.RequestScope;
 import pl.wlazly.library.entity.Book;
 import pl.wlazly.library.repository.BooksRepository;
 import pl.wlazly.library.service.BooksService;
@@ -13,7 +11,6 @@ import pl.wlazly.library.service.BooksService;
 import java.util.List;
 
 @RestController
-@RequestScope
 @RequestMapping("/api")
 public class DbServiceResource {
 
@@ -28,10 +25,9 @@ public class DbServiceResource {
         return booksService.getBookList();
     }
 
-    @GetMapping("/books/{title}")
-    public List<Book> getBookByIBS(@PathVariable(value = "title") String title) {
-        return booksService.findBooksByTitle(title);
-
+    @GetMapping("/books/{id}")
+    public List<Book> getBookById(@PathVariable(value = "id") int id) {
+        return (List<Book>) booksService.getBookById(id);
     }
 
     @PostMapping("/books")
