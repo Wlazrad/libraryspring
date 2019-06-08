@@ -45,11 +45,9 @@ public class User implements Serializable {
     private int active;
 
     @Column(name = "costs")
-    @NotNull
     private BigDecimal costs;
 
     @Column(name = "ban")
-    @NotNull
     private boolean ban;
 
     @ManyToMany(cascade = CascadeType.ALL)
