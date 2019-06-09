@@ -22,3 +22,11 @@ W celu uruchomienia aplikacji na innym środowisku można skorzystać ze Spring 
 ```
 $ mvn spring-boot:run
 ```
+
+### Login
+Konto admina:
+admin@gmail.com
+hasło : admin
+Konto usera:
+test@gmail.com
+hasło : test
